@@ -1,16 +1,17 @@
 pipeline {
     agent any  // Runs the pipeline on any available agent
 
-//     environment {
+    environment {
 //         // Optional: Define any environment variables here
-//         MAVEN_HOME = '/opt/maven'
-//         JAVA_HOME = '/opt/java'
-//     }
+        MAVEN_HOME = '/opt/maven'
+        JAVA_HOME = '/opt/java'
+    }
 
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the code from your repository
+                echo "Fetching from github"
                 git 'https://github.com/akashshukla-ring/calculator'
             }
         }
@@ -19,8 +20,9 @@ pipeline {
             steps {
                 script {
                     // Run Maven build (adjust this based on your actual Maven setup)
-//                     sh "${MAVEN_HOME}/bin/mvn clean install -DskipTests=true"
-                       sh "mvn clean install -DskipTests=true"
+                    echo "Building using maven"
+                    sh "${MAVEN_HOME}/bin/mvn clean install -DskipTests=true"
+//                        sh "mvn clean install -DskipTests=true"
                 }
             }
         }
@@ -29,8 +31,10 @@ pipeline {
             steps {
                 script {
                     // Run tests using Maven (change command to fit your needs)
-//                     sh "${MAVEN_HOME}/bin/mvn tests"
-                    sh "mvn test"
+
+                    echo "Testing using maven"
+                    sh "${MAVEN_HOME}/bin/mvn tests"
+//                     sh "mvn test"
                 }
             }
         }
