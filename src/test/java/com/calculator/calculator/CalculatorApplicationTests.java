@@ -27,6 +27,11 @@ class CalculatorApplicationTests {
 		assertEquals(calculatorService.add(1, 2), 3.0);
 	}
 
+	@Test
+	public void testWrongAddition() {
+		assertEquals(calculatorService.add(1, 5), 3.0);
+	}
+
 //	@Test
 //	public void testAdd2() {
 //		assertEquals(calculatorService.add(1, 4), 3.0);
